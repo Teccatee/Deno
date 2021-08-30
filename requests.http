@@ -1,0 +1,58 @@
+
+### Register
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+    "name": "test",
+    "email": "test1@example.com",
+    "password": "test"
+}
+
+### Login
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "test"
+}
+
+################
+#### Surveys
+################
+
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMDMxODY5NjA0OX0.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ.TWL-K1BGfaMqAcMs4x3VZRc4QyLuS1nKRmfkgmP_UQrBC4Z4Y1rSNFiO-GFO2Y9esA5M_YWyuDEh7SivSeAQlA
+
+### Get all survey for user
+GET http://localhost:8000/api/survey
+# Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMDMxMjA2NzkyMX0.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ.ewmAyJ1Ce4VSxMXWUM672HJ4oLkkBACVjJ8JXUK2wNgtKIBGtEj11hJfiAIMBCICLDBaS_9LGJFGZZ0JV6Kvyw
+Authorization: Bearer {{ token }}
+
+### Get sigle survey
+GET http://localhost:8000/api/survey/612ca96ea7da0ff27363b7aa
+Authorization: Bearer {{ token }}
+
+### Create survey
+POST http://localhost:8000/api/survey
+Authorization: Bearer {{ token }}
+Content-Type: application/json
+
+{
+    "name": "Survey1",
+    "description": "Lorem ipsum something."
+}
+
+### Update survey
+PUT http://localhost:8000/api/survey/612ca96ea7da0ff27363b7aa
+Authorization: Bearer {{ token }}
+Content-Type: application/json
+
+{
+    "name": "Survey1",
+    "description": "new description"
+}
+
+### Delete survey
+DELETE  http://localhost:8000/api/survey/612ca96ea7da0ff27363b7aa
+Authorization: Bearer {{ token }}
