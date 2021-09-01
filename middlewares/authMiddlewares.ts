@@ -1,4 +1,4 @@
-import { RouterContext, decode } from "../deps.ts";
+import { decode, RouterContext } from "../deps.ts";
 import User from "../models/User.ts";
 
 export const authMiddleware = async (ctx: RouterContext, next: Function) => {
@@ -14,12 +14,12 @@ export const authMiddleware = async (ctx: RouterContext, next: Function) => {
     ctx.response.status = 401;
     return;
   }
-  const payload = decode(jwt);
-  if(payload) {
+  const [header, payload, signature] = decode(jwt);
+  if (payload) {
     const user = await User.findOne(payload);
     ctx.state.user = user;
     await next();
   } else {
-      ctx.response.status = 401;
+    ctx.response.status = 401;
   }
-};
+}

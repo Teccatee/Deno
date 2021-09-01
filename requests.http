@@ -1,12 +1,11 @@
-
 ### Register
 POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "name": "test",
-    "email": "test1@example.com",
-    "password": "test"
+    "name": "User2",
+    "email": "user2@gmail.com",
+    "password": "user2"
 }
 
 ### Login
@@ -14,15 +13,15 @@ POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-    "email": "test@example.com",
-    "password": "test"
+    "email": "user1@gmail.com",
+    "password": "user1"
 }
 
 ################
 #### Surveys
 ################
 
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMDMxODY5NjA0OX0.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ.TWL-K1BGfaMqAcMs4x3VZRc4QyLuS1nKRmfkgmP_UQrBC4Z4Y1rSNFiO-GFO2Y9esA5M_YWyuDEh7SivSeAQlA
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMDQyMTg0NTA2OX0.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSJ9.IBo11cXz6jhjXSr0SEStRb89x1RFonQ6hxDQA3jfO0sgu0xLRO9Bj6ylR5xGsS7Hl1u-lWobFzJG--8qMMhy5Q
 
 ### Get all survey for user
 GET http://localhost:8000/api/survey
@@ -30,7 +29,7 @@ GET http://localhost:8000/api/survey
 Authorization: Bearer {{ token }}
 
 ### Get sigle survey
-GET http://localhost:8000/api/survey/612ca96ea7da0ff27363b7aa
+GET http://localhost:8000/api/survey/612e3579ae31846289890e11
 Authorization: Bearer {{ token }}
 
 ### Create survey
@@ -39,8 +38,8 @@ Authorization: Bearer {{ token }}
 Content-Type: application/json
 
 {
-    "name": "Survey1",
-    "description": "Lorem ipsum something."
+    "name": "Survey3",
+    "description": "Description3"
 }
 
 ### Update survey
@@ -55,4 +54,61 @@ Content-Type: application/json
 
 ### Delete survey
 DELETE  http://localhost:8000/api/survey/612ca96ea7da0ff27363b7aa
+Authorization: Bearer {{ token }}
+
+################
+#### Questions
+################
+
+### Get all questions for survey
+GET http://localhost:8000/api/survey/612e359eae31846289890e12/questions
+# Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMDMxMjA2NzkyMX0.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20ifQ.ewmAyJ1Ce4VSxMXWUM672HJ4oLkkBACVjJ8JXUK2wNgtKIBGtEj11hJfiAIMBCICLDBaS_9LGJFGZZ0JV6Kvyw
+Authorization: Bearer {{ token }}
+
+### Get sigle question
+GET http://localhost:8000/api/question/612e04379e4620660df0f5ab
+Authorization: Bearer {{ token }}
+
+### Create question
+POST http://localhost:8000/api/question/612e35a6ae31846289890e13
+Authorization: Bearer {{ token }}
+Content-Type: application/json
+
+{
+    "text": "How much you like TS?",
+    "type": "choice",
+    "required": true,
+    "data": {
+        "multiple": false,
+        "answers": [
+            "I like it very much",
+            "I like it",
+            "I don't like it",
+            "I hate it"
+        ]
+    }
+}
+
+### Update question
+PUT http://localhost:8000/api/question/612e04379e4620660df0f5ab
+Authorization: Bearer {{ token }}
+Content-Type: application/json
+
+{
+    "text": "How much you like Node?",
+    "type": "choice",
+    "required": true,
+    "data": {
+        "multiple": false,
+        "answers": [
+            "I like it very much",
+            "I like it",
+            "I don't like it",
+            "I hate it"
+        ]
+    }
+}
+
+### Delete question
+DELETE  http://localhost:8000/api/question/612e04379e4620660df0f5ab
 Authorization: Bearer {{ token }}

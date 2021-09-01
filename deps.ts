@@ -1,5 +1,5 @@
-export { Application, Router } from "https://deno.land/x/oak@v9.0.0/mod.ts";
-export type { RouterContext } from "https://deno.land/x/oak@v9.0.0/mod.ts";
+export { Application, Router, send } from "https://deno.land/x/oak@v9.0.0/mod.ts";
+export type { RouterContext, Context } from "https://deno.land/x/oak@v9.0.0/mod.ts";
 export { MongoClient } from "https://deno.land/x/mongo@v0.24.0/mod.ts";
 export {
   compareSync,

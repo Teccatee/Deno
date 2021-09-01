@@ -1,0 +1,80 @@
+<%- await include(`views/partials/header.ejs`) %>
+
+    <div class="container">
+        <p>
+            <a href="/" class="btn btn-light">Go back to all surveys</a>
+        </p>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h1>
+                    <%= survey.name %>
+                </h1>
+                <div>
+                    <%= survey.description %>
+                    <p class="text-danger mt-3">* Required</p>
+                </div>
+            </div>
+        </div>
+        <form action="/survey/<%= survey.id %>" method=post>
+            <% for(let question of questions) { %>
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= question.text %> 
+                            <% if(question.required) { %>
+                                <span class="text-danger small">*</span>
+                            <% } %>   
+                        </h5> 
+                        <% if(question.isText()) { %>
+                            <input type="text" 
+                                class="form-control<%= !errors[question.id] ? ' is-invalid' : '' %>"
+                                name="<%= question.id %>" value="<%= answers[question.id] %> "
+                                placeholder="Write your answer">
+                                <% if(errors[question.id]) { %> 
+                                    <div class="invalid-feedback">
+                                        <%= errors[question.id] %> 
+                                    </div>
+                                <% }  %> 
+                        <% } else if(question.isChoice() && !question.data.multiple) { %>
+                            <% for(let [index, answer] of question.data.answers.entries()) { %>                          
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" 
+                                        id="<%= question.id %>_<%= index %>" 
+                                        name="<%= question.id %>"
+                                        value="<%= answer %>" <%= answer === answer[question.id] ? ' checked' : '' %>
+                                        class="custom-control-input<%= !errors[question.id] ? ' is-invalid' : '' %>"">
+                                    <label class="custom-control-label" for="<%= question.id %>_<%= index %>"><%= answer %></label>
+                                    <% if(errors[question.id] && index === question.data.answer.length - 1) { %> 
+                                        <div class="invalid-feedback">
+                                            <%= errors[question.id] %> 
+                                        </div>
+                                    <% }  %> 
+                                </div>
+                            <% } %>  
+                        <% } else if(question.isChoice() && question.data.multiple) { %>
+                            <% for(let [index, answer] of question.data.answers.entries()) { %>  
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" 
+                                        id="<%= question.id %>_<%= index %>"
+                                        name="<%= question.id %>"
+                                        value="<%= answer %>"
+                                        <%= answers[question.id] && answers[question.id].includes(answer) ? ' checked' : '' %> 
+                                        class="custom-control-input<%= !errors[question.id] ? ' is-invalid' : '' %>">
+                                    <label class="custom-control-label" for="<%= question.id %>_<%= index %>"><%= answer %></label>
+                                    <% if(errors[question.id] && index === question.data.answer.length - 1) { %> 
+                                        <div class="invalid-feedback">
+                                            <%= errors[question.id] %> 
+                                        </div>
+                                    <% }  %> 
+                                </div>
+                            <% } %> 
+                        <% } %>        
+                    </div>
+                </div>
+            <% } %>
+            <p>
+                <button class="btn btn-success">Submit</button>
+            </p>
+        </form>
+    </div>
+<%- await include(`views/partials/footer.ejs`) %>

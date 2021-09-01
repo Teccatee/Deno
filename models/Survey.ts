@@ -10,7 +10,7 @@ export default class Survey {
     ) {}
 
     static async findAll() {
-
+        return await surveyCollection.find({}, { noCursorTimeout: false }).toArray();
     }
 
     static async findByUserId(userId: string) {

@@ -1,4 +1,5 @@
 import { MongoClient } from "./deps.ts";
+import { QuestionType } from "./models/Question.ts";
 
 const client = new MongoClient();
 const uri =
@@ -25,6 +26,25 @@ interface SurveySchema {
   description: string;
 }
 
+interface QuestionSchema {
+  id: string;
+  surveyId: string,
+  text: string;
+  type: QuestionType;
+  required: boolean;
+  data: any;
+}
+
+// interface AnswerSchema {
+//   id: string,
+//   surveyId: string,
+//   date: Date,
+//   userAgent: string | null,
+//   answers: any
+// }
+
 
 export const usersCollection = db.collection<UserSchema>("users");
 export const surveyCollection = db.collection<SurveySchema>("survey");
+export const questionCollection = db.collection<QuestionSchema>("question");
+export const answersCollection = db.collection("answers");
