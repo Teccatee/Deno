@@ -1,3 +1,4 @@
+import { getNumericDate } from "https://deno.land/x/djwt@v2.3/mod.ts";
 import {
   compareSync,
   create,
@@ -20,7 +21,9 @@ class AuthController {
         };
         return;
       }
-      const user = await User.findOne({ email: email });
+      const _user = await User.findOne({ email: email });
+      const user = new User(_user.name, _user.email, _user.password);
+      user.id = _user.id;
       if (!user) {
         ctx.response.status = 422;
         ctx.response.body = { message: "Incorrect email" };
@@ -37,8 +40,8 @@ class AuthController {
           ["sign", "verify"],
         );
         const jwt = await create(
-          { alg: "HS512", typ: "JWT", exp: Date.now() + 60 * 60 * 1000 },
-          { email: user.email },
+          { alg: "HS512", typ: "JWT", exp: 60*60 },
+          { name: user.name, email: user.email },
           key,
         );
         const payload = await verify(jwt, key); // { foo: "bar" };
@@ -57,14 +60,14 @@ class AuthController {
     if (result.type === "json") {
       const value = await result.value; // an object of parsed JSON
       const { name, email, password } = value;
-      let user = await User.findOne({ email: email });
-      if (user) {
+      let _user = await User.findOne({ email: email });
+      if (_user) {
         ctx.response.status = 422;
         ctx.response.body = { message: "Email is already used" };
         return;
       }
       const hashedPassword = hashSync(password);
-      user = new User({ name, email, password: hashedPassword });
+      const user = new User(name, email, hashedPassword);
       await user.save();
       ctx.response.status = 201;
       ctx.response.body = user;

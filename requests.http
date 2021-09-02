@@ -21,7 +21,7 @@ Content-Type: application/json
 #### Surveys
 ################
 
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMDQyMTg0NTA2OX0.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSJ9.IBo11cXz6jhjXSr0SEStRb89x1RFonQ6hxDQA3jfO0sgu0xLRO9Bj6ylR5xGsS7Hl1u-lWobFzJG--8qMMhy5Q
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTB9.eyJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSJ9.nNvLzuziveqW-R4Me-aM-XTs7bV7_9G7ETMnlwpCx8egNdnA7m-6OG1JHBYvDq5vVtNgE7LTjwQruksSNNwmoB
 
 ### Get all survey for user
 GET http://localhost:8000/api/survey
@@ -38,8 +38,8 @@ Authorization: Bearer {{ token }}
 Content-Type: application/json
 
 {
-    "name": "Survey3",
-    "description": "Description3"
+    "name": "Deno Course",
+    "description": "I would like to know your opinion on my Deno course."
 }
 
 ### Update survey
