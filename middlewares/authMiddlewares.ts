@@ -16,7 +16,8 @@ export const authMiddleware = async (ctx: RouterContext, next: Function) => {
   }
   const [header, payload, signature] = decode(jwt);
   if (payload) {
-    const user = await User.findOne(payload);
+    const { name, email }: string | any = payload;
+    const user = await User.findUserByEmail(email);
     ctx.state.user = user;
     await next();
   } else {

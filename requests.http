@@ -3,9 +3,9 @@ POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-    "name": "User2",
-    "email": "user2@gmail.com",
-    "password": "user2"
+    "name": "User3",
+    "email": "user3@gmail.com",
+    "password": "user3"
 }
 
 ### Login
@@ -21,7 +21,7 @@ Content-Type: application/json
 #### Surveys
 ################
 
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTB9.eyJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSJ9.nNvLzuziveqW-R4Me-aM-XTs7bV7_9G7ETMnlwpCx8egNdnA7m-6OG1JHBYvDq5vVtNgE7LTjwQruksSNNwmoB
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMTE5OTMyNDI3N30.eyJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSJ9.Zrglm6kDtfOxnVBmh-ZXEuJsKNFZli8_aZcFakZbRSu6DkCzWAA9mrpK6kLsZohVUtsklnubLJ0WiewUQi-h7A
 
 ### Get all survey for user
 GET http://localhost:8000/api/survey

@@ -1,15 +1,63 @@
 import { questionCollection } from "../mongo.ts";
 
 export default class Question {
-  public id: string = "";
+  private _id: string = "";
 
   constructor(
-    public surveyId: string,
-    public text: string,
-    public type: QuestionType,
-    public required: boolean,
-    public data: any,
+    private _surveyId: string,
+    private _text: string,
+    private _type: QuestionType,
+    private _required: boolean,
+    private _data: any,
   ) {}
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(id: string) {
+    this._id = id;
+  }
+
+  get surveyId(): string {
+    return this._surveyId;
+  }
+
+  set surveyId(surveyId: string) {
+    this._surveyId = surveyId;
+  }
+
+  get text(): string {
+    return this._text;
+  }
+
+  set text(text: string) {
+    this._text = text;
+  }
+
+  get type(): QuestionType {
+    return this._type;
+  }
+
+  set type(type: QuestionType) {
+    this._type = type;
+  }
+
+  get required(): boolean {
+    return this._required;
+  }
+
+  set required(required: boolean) {
+    this._required = required;
+  }
+
+  get data(): any {
+    return this._data;
+  }
+
+  set data(data: any) {
+    this._data = data;
+  }
 
   static async findBySurveyId(surveyId: string) {
     return await questionCollection.find({ surveyId }, {
@@ -59,7 +107,6 @@ export default class Question {
   isChoice(): boolean {
     return this.type === QuestionType.CHOICE;
   }
-
 }
 
 export enum QuestionType {
