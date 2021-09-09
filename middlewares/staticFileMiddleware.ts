@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 import { Context, send } from "../deps.ts";
 import { fileExists } from "../helpers.ts";
 

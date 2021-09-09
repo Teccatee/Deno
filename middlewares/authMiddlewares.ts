@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 import { decode, RouterContext } from "../deps.ts";
 import User from "../models/User.ts";
 
