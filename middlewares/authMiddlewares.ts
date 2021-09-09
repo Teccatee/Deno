@@ -17,11 +17,17 @@ export const authMiddleware = async (ctx: RouterContext, next: Function) => {
   }
   const [header, payload, signature] = decode(jwt);
   if (payload) {
-    const { name, email }: string | any = payload;
-    const user = await User.findUserByEmail(email);
-    ctx.state.user = user;
-    await next();
+    const { exp }: any = payload;
+    if (exp < Date.now()) {
+      ctx.response.status = 401;
+      ctx.response.body = "Token expired!";
+    } else {
+      const { name, email }: string | any = payload;
+      const user = await User.findUserByEmail(email);
+      ctx.state.user = user;
+      await next();
+    }
   } else {
     ctx.response.status = 401;
   }
-}
+};

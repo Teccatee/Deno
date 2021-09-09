@@ -2,7 +2,7 @@ import Survey from "../models/Survey.ts";
 import { RouterContext } from "../deps.ts";
 import { renderView } from "../helpers.ts";
 import Question from "../models/Question.ts";
-import { answersCollection } from "../mongo.ts";
+import { answersCollection } from "../database/mongoDB/mongo.ts";
 
 class SiteController {
   async surveys(ctx: RouterContext) {

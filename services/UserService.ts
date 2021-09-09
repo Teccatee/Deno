@@ -1,5 +1,5 @@
 // deno-lint-ignore-file
-import { usersCollection } from "../mongo.ts";
+import { usersCollection } from "../database/mongoDB/mongo.ts"
 import { users } from "../database/fileTS/users.ts";
 import { IUserService } from "./Contract/IUserService.ts";
 import User from "../models/User.ts";

@@ -1,3 +1,4 @@
+import { getNumericDate } from "https://deno.land/x/djwt@v2.3/mod.ts";
 import {
   compareSync,
   create,
@@ -38,10 +39,9 @@ class AuthController {
           true,
           ["sign", "verify"],
         );
-        const validity = new Date().getTime()+3600000;
         const jwt = await create(
-          { alg: "HS512", typ: "JWT", exp: validity },
-          { name: user.name, email: user.email },
+          { alg: "HS512", typ: "JWT" },
+          { exp: Date.now() + 1000*60*60, name: user.name, email: user.email },
           key,
         );
         const _payload = await verify(jwt, key); // { foo: "bar" };

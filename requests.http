@@ -21,7 +21,7 @@ Content-Type: application/json
 #### Surveys
 ################
 
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImV4cCI6MTYzMTE5OTMyNDI3N30.eyJuYW1lIjoiVXNlcjEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSJ9.Zrglm6kDtfOxnVBmh-ZXEuJsKNFZli8_aZcFakZbRSu6DkCzWAA9mrpK6kLsZohVUtsklnubLJ0WiewUQi-h7A
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzEyMDM5NjY2NTIsIm5hbWUiOiJVc2VyMSIsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIn0.ya9I-9ox7wL1ITuG2CKPCB9Ad-Jam_pEs72y1_umcj2NEGpu7h9cR-hBNL-FxlK681gLIT-lTxnxkT9Io39iTw
 
 ### Get all survey for user
 GET http://localhost:8000/api/survey

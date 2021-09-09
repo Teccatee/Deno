@@ -1,7 +1,7 @@
-import { MongoClient } from "./deps.ts";
-import { UserSchema } from "./models/UserSchema.ts";
-import { QuestionSchema } from "./models/QuestionSchema.ts";
-import { SurveySchema } from "./models/SurveySchema.ts";
+import { MongoClient } from "../../deps.ts"
+import { UserSchema } from "../../models/UserSchema.ts";
+import { QuestionSchema } from "../../models/QuestionSchema.ts";
+import { SurveySchema } from "../../models/SurveySchema.ts";
 
 const client = new MongoClient();
 const uri =

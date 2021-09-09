@@ -1,4 +1,4 @@
-import { surveyCollection } from "../mongo.ts";
+import { surveyCollection } from "../database/mongoDB/mongo.ts";
 import { SurveyService } from "../services/SurveyService.ts";
 
 export default class Survey {
@@ -60,7 +60,7 @@ export default class Survey {
 
   static async findByUserId(userId: string): Promise<Survey[]> {
     const surveyService = new SurveyService();
-    const surveys = await surveyService.findSurveysByUserId(userId, 'local');
+    const surveys = await surveyService.findSurveysByUserId(userId, 'mongo');
     return surveys;
   }
 

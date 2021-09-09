@@ -1,4 +1,4 @@
-import { questionCollection } from "../mongo.ts";
+import { questionCollection } from "../database/mongoDB/mongo.ts";
 
 export default class Question {
   private _id: string = "";

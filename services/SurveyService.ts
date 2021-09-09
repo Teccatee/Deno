@@ -1,6 +1,6 @@
 // deno-lint-ignore-file
 import Survey from "../models/Survey.ts";
-import { surveyCollection } from "../mongo.ts";
+import { surveyCollection } from "../database/mongoDB/mongo.ts";
 import { ISurveyService } from "./Contract/ISurveyService.ts";
 import { surveys } from "../database/fileTS/survey.ts";
 
